@@ -1,0 +1,73 @@
+// 1) This is code to return all groups of strings that are anagrams of each other in an array of strings 
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<vector<string>> Anagrams(vector<string> &string_list)
+{
+    //code here
+    map<string, vector<string>> mp;
+
+    vector<vector<string>> vs;
+
+    vector<string> vec;
+
+
+    for (int i = 0; i < string_list.size(); ++i)
+    {
+        string ele = string_list[i];
+        sort(ele.begin(), ele.end());
+
+        if(mp.find(ele) == mp.end())
+        vec.push_back(ele);
+
+        mp[ele].push_back(string_list[i]);
+
+    }
+
+    for(int i=0; i<vec.size(); ++i)
+    { 
+        vector<string> v1;
+
+       for(int j =0; j<mp[vec[i]].size(); ++j)
+       {
+           v1.push_back(mp[vec[i]][j]);
+       }
+
+       vs.push_back(v1);
+    }
+
+
+  return vs;
+}
+
+
+int main(void)
+{
+
+    int n;
+    cin>>n;
+
+    vector<string> sl(n);
+
+    for(int i=0; i<n; ++i)
+    {
+        cin>>sl[i];
+    }
+
+    vector<vector<string>> ans; 
+
+    ans = Anagrams(sl);
+
+    for(int i=0; i<ans.size(); ++i)
+    {
+        for(int j=0; j<ans[i].size(); ++j)
+        {
+            cout<< ans[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+
+    return 0;
+}
