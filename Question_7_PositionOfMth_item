@@ -1,0 +1,24 @@
+// Ques - M items are to be delivered in a circle of size N. Find the position where the M-th item will be delivered if we start from a given position K. Note that items are distributed at adjacent positions starting from K.
+// function below
+
+int findPosition(int N , int M , int K) {
+        // code here
+     int pos;
+     
+     if(N>M)
+     pos = M;
+     else
+     pos = M%N;
+     
+     if(pos == 0)
+     pos = N;
+     
+    
+     int val = K+pos-1;
+     
+     if(val > N)
+     return val - N;
+     else
+     return val;
+     
+    }
