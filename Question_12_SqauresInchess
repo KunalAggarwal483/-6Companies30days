@@ -1,0 +1,9 @@
+//Question - Find total number of Squares in a N*N cheesboard.
+
+
+
+ long long squaresInChessBoard(long long n) {
+        // code here
+        
+        return (1LL*n*(n+1)*(2*n+1))/6;
+    }
