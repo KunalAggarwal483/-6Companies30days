@@ -1,0 +1,33 @@
+//Ques - In the stock market, a person buys a stock and sells it on some future date. Given the stock prices of N days in an array A[ ] and a positive integer K, find out the maximum profit a person can make in at-most K transactions. A transaction is equivalent to (buying + selling) of a stock and new transaction can start only when the previous transaction has been completed.
+// funtion below
+
+int maxProfit(int k, int n, int a[]) {
+        // code here
+        int dp[k+1][n];
+        //  memset(dp,0,sizeof(dp));
+        
+        for(int i=0; i<=k; ++i)
+        {
+            dp[i][0] = 0;
+        }
+        
+        for(int i=0; i<n; ++i)
+        {
+            dp[0][i] = 0;
+        }
+        
+        for(int i=1; i<=k; ++i)
+        {  
+            int max_v = INT_MIN;
+            
+            for(int j =1; j<n; ++j)
+            {   
+                max_v = max(max_v, dp[i-1][j-1] - a[j-1]);
+                
+                dp[i][j] = max(dp[i][j-1], a[j] + max_v);
+            }
+        }
+        
+        return dp[k][n-1];
+    }
+
