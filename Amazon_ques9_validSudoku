@@ -1,0 +1,32 @@
+//Ques - Given an incomplete Sudoku configuration in terms of a 9x9  2-D square matrix(mat[][]) the task to check if the current configuration is valid or not where a 0 represents an empty block.
+Note: Current valid configuration does not ensure validity of the final solved sudoku. 
+
+
+int isValid(vector<vector<int>> mat){
+        // code here
+        
+        unordered_set<string> st;
+        
+        for(int i=0; i<9; ++i)
+        {
+            for(int j=0; j<9; ++j)
+            {   
+                if(mat[i][j] != 0)
+                {
+                int boxid = (j/3)+ (i/3)*3;
+                string row_val = "row" + to_string(i) + to_string(mat[i][j]);
+                string col_val = "col" + to_string(j) + to_string(mat[i][j]);
+                string box_val = "box" + to_string(boxid) + to_string(mat[i][j]);
+                
+              if(st.find(row_val) != st.end() || st.find(col_val) != st.end() || st.find(box_val) != st.end())
+              return 0;
+            
+             st.insert(row_val);
+             st.insert(col_val);
+             st.insert(box_val);
+                }
+                
+            }
+        }
+        return 1;
+    }
