@@ -1,0 +1,42 @@
+//ques - Given an input stream of A of n characters consisting only of lower case alphabets. The task is to find the first non repeating character, each time a character is inserted to the stream. If there is no such character then append '#' to the answer.
+
+	string FirstNonRepeating(string a){
+		    // Code here
+		int n = a.size(); 
+       unordered_map<char, int> mp;
+       queue<char> q;
+        string ans = "";
+        char fnr = a[0];
+
+        for(int i=0; i<n; ++i)
+        {
+           mp[a[i]]++;
+           
+           if(mp[a[i]] == 1)
+           q.push(a[i]);
+
+           if(fnr != '#' and mp[fnr] == 1)
+           {
+              ans += fnr;
+           }
+          else{
+            fnr = '#';
+
+            while(!q.empty() and mp[q.front()] != 1)
+            {
+              q.pop();
+            }
+
+            if(!q.empty())
+            {
+              fnr = q.front();
+            }
+            
+            // cout<<fnr<<"\n";
+            ans += fnr;
+        }
+        }
+
+		   return ans;
+		}
+    
