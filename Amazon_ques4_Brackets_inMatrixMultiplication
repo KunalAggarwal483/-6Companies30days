@@ -1,0 +1,58 @@
+//Ques- Given an array p[] of length n used to denote the dimensions of a series of matrices such that dimension of i'th matrix is p[i] * p[i+1]. There are a total of n-1 matrices. Find the most efficient way to multiply these matrices together. 
+The problem is not actually to perform the multiplications, but merely to decide in which order to perform the multiplications such that you need to perform minimum number of multiplications. There are many options to multiply a chain of matrices because matrix multiplication is associative i.e. no matter how one parenthesize the product, the result will be the same.
+
+//function below
+
+ string matrixChainOrder(int arr[], int n){
+        // code here
+        map<pair<int,int>, string> mp;
+
+        int dp[n-1][n-1];
+    
+    for(int i=0, j=0; j<n-1; ++j)
+    {
+      int r=i,c=j, len=n-1-j;
+       while(len--)
+       {
+           if(j==0)
+           {
+             dp[r][c] =0;
+            
+             string str = "";
+             char ch = 'A'+ (n-1-len-1);
+             str = str + ch;
+             mp[make_pair(r,c)] = str;
+              r++; c++;
+    
+           }
+           else if(j==1)
+           {
+          dp[r][c] = arr[r]*arr[c]*arr[c+1];
+          mp[make_pair(r,c)] = '('+ mp[make_pair(r,c-1)] + mp[make_pair(r+1,c)]+ ')';
+             r++, c++;
+           }
+           else
+           {
+             int right, down;
+             dp[r][c] = INT_MAX;
+             for(right=r, down=r+1; right<=c && down<=c; right++, down++)
+             {
+          
+               int operations = dp[r][right] + dp[down][c] + arr[r]*arr[down]*arr[c+1];
+    
+              if(dp[r][c] > operations)
+              {
+                dp[r][c] = operations;
+                mp[make_pair(r,c)] = '('+ mp[make_pair(r,right)]+mp[make_pair(down,c)]+')';
+              }
+             }
+             
+             r++, c++;
+           }
+       }
+    } 
+    
+    
+  
+    return mp[make_pair(0,n-2)];
+    }
