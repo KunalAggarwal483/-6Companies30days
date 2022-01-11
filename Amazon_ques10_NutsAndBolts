@@ -1,0 +1,51 @@
+//Ques - Given a set of N nuts of different sizes and N bolts of different sizes. There is a one-one mapping between nuts and bolts. Match nuts and bolts efficiently.
+
+Comparison of a nut to another nut or a bolt to another bolt is not allowed. It means nut can only be compared with bolt and bolt can only be compared with nut to see which one is bigger/smaller.
+The elements should follow the following order ! # $ % & * @ ^ ~ .
+
+//functions below
+
+int partition(char arr[], int l, int r, char pivot)
+   {
+       int i=l-1;
+       int j;
+       
+       for(j=l; j<r; ++j)
+       {
+           if(arr[j] < pivot)
+           {
+               i++;
+               swap(arr[j], arr[i]);
+           }
+           
+           if(arr[j] == pivot)
+           {
+               swap(arr[j], arr[r]);
+               j--;
+           }
+       }
+       
+       swap(arr[i+1], arr[r]);
+       
+       return i+1;
+   }
+
+   void quicksort(char nuts[], char bolts[], int l, int r)
+   {
+       if(l>=r) return;
+       
+       int pivot = partition(nuts, l, r, bolts[r]);
+       
+       int pivot2 = partition(bolts, l, r, nuts[pivot]);
+       
+       quicksort(nuts, bolts,l, pivot-1);
+       quicksort(nuts, bolts, pivot+1, r);
+   }
+  
+// this is the main function given in the question
+
+	void matchPairs(char nuts[], char bolts[], int n) {
+	    // code here
+	    quicksort(nuts, bolts, 0, n-1);
+	   
+	}
