@@ -1,0 +1,21 @@
+//ques - Given a square matrix[][] of size N x N. The task is to rotate it by 90 degrees in an anti-clockwise direction without using any extra space.
+//function below
+
+void rotate(vector<vector<int> >& a)
+{
+    // Your code goes here
+    
+    int n = a.size();
+     for(int i=0; i<n; i++)
+    {
+        for(int j=i; j<n; j++)
+        {
+            swap(a[i][j], a[j][i]);
+        }
+        
+        for(int k=0; k<n/2; k++)
+        {
+            swap(a[k][i], a[n-1-k][i]);
+        }
+    }
+}
