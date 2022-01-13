@@ -1,0 +1,47 @@
+//ques - Given a matrix of size r*c. Traverse the matrix in spiral form.
+
+ vector<int> spirallyTraverse(vector<vector<int> > mat, int r, int c) 
+    {
+        // code here 
+        vector<int> vec;
+        int row_len=c, fr=0, lr=r-1, fc=fr+1, lc=lr-1, n = r*c;
+        
+        while(n)
+        {
+        
+        for(int j=fr; j<row_len; ++j)
+        {
+           vec.push_back(mat[fr][j]);
+           n--;
+        }
+        
+        if(n==0) break;
+        
+        for(int i=fc ; i<lr; ++i)
+        {
+            vec.push_back(mat[i][row_len-1]);
+            n--;
+        }
+         if(n==0) break;
+        
+        for(int j=row_len-1; j>=fr; j--)
+        {
+            vec.push_back(mat[lr][j]);
+            n--;
+        }
+         if(n==0) break;
+        
+        for(int i=lc; i>fr; i--)
+        {
+            vec.push_back(mat[i][fr]);
+            n--;
+        }
+         if(n==0) break;
+        
+        row_len--; fr++; lr--; fc++; lc--;
+        
+        }
+        
+        return vec;
+        
+    }
