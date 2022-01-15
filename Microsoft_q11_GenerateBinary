@@ -1,0 +1,22 @@
+//ques - Given a number N. The task is to generate and print all binary numbers with decimal values from 1 to N.
+
+vector<string> generate(int n)
+{
+	// Your code here
+	vector<string> ans;
+	for(int i=1; i<=n; ++i)
+	{   
+	    string res = "";
+	    int k =i;
+	    
+	    while(k)
+	    {
+	       res = to_string(k&1) + res;
+	       k = k>>1;
+	    }
+	    
+	    ans.push_back(res);
+	}
+	return ans;
+}
+
