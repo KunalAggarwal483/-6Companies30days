@@ -1,0 +1,68 @@
+//ques- Given a binary tree and an integer X. Your task is to complete the function countSubtreesWithSumX() that returns the count of the number of subtress having total node’s data sum equal to the value X.
+Example: For the tree given below:            
+
+              5
+            /    \
+        -10     3
+        /    \    /  \
+      9     8  -4 7
+
+Subtree with sum 7:
+             -10
+            /      \
+          9        8
+
+and one node 7.
+
+//function below
+
+
+
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+//Function to count number of subtrees having sum equal to given sum.
+
+int ans=0;
+
+void helper(Node* root, Node* head, int x, int *sum)
+{
+   if(root == NULL)
+	{
+	    *sum = 0;
+	    return;
+	}
+	
+	int ls= 0, rs =0;
+	helper(root->left,head, x, &ls);
+	helper(root->right,head, x, &rs);
+	
+	
+	
+	*sum = ls+rs+root->data;
+	
+	
+	if( ls+rs+root->data == x) ans++;
+	
+	
+	return; 
+}
+
+
+int countSubtreesWithSumX(Node* root, int x)
+{
+	// Code here
+	int sum = 0;
+     helper(root,root, x, &sum);
+     
+     int res = ans;
+     ans = 0;
+     
+     return res;
+     
+     }
+	
