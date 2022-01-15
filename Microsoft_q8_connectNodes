@@ -1,0 +1,57 @@
+//ques- Given a binary tree, connect the nodes that are at same level. You'll be given an addition nextRight pointer for the same.
+
+Initially, all the nextRight pointers point to garbage values. Your function should set these pointers to point next right for each node.
+       10                       10 ------> NULL
+      / \                       /      \
+     3   5       =>     3 ------> 5 --------> NULL
+    / \     \               /  \           \
+   4   1   2          4 --> 1 -----> 2 -------> NULL
+   
+   
+   //function below
+   
+   
+    void connect(Node *root)
+    {
+       // Your Code Here
+       queue<Node*> q;
+       q.push(root);
+       q.push(NULL);
+       int prevchilds = 1;
+       int counter = 0;
+       
+       while(!q.empty())
+       {
+           if(q.front() == NULL)
+           {
+               q.pop();
+               continue;
+           }
+           
+           Node* curr = q.front();
+           q.pop();
+           prevchilds--;
+           
+           if(curr->left != NULL)
+           {
+           q.push(curr->left);
+           counter++;
+           }
+           
+           if(curr->right != NULL)
+           {
+               q.push(curr->right);
+               counter++;
+           }
+           
+           if(prevchilds == 0)
+           {
+               q.push(NULL);
+               prevchilds = counter;
+               counter=0;
+           }
+           
+           curr->nextRight = q.front();
+       }
+       
+    }    
