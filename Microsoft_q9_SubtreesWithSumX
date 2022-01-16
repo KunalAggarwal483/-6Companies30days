@@ -1,4 +1,5 @@
 //ques- Given a binary tree and an integer X. Your task is to complete the function countSubtreesWithSumX() that returns the count of the number of subtress having total node’s data sum equal to the value X.
+
 Example: For the tree given below:            
 
               5
