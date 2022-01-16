@@ -7,3 +7,6 @@ Goldman sachs - Questions 1- 15 - https://docs.google.com/document/d/e/2PACX-1vR
 
 
 Amazon - Questions 16-30 - https://docs.google.com/document/d/1KH9GVaUCET-y5SL5sg6DAnon9XwRRW-sPiyJ2p7FRLs/edit
+
+
+Microsoft - Questions 31-45: https://docs.google.com/document/d/1sSyOTeZBVJExf0oytLVGk6Z34h1usFm4QRkr1Wb5ouk/edit
